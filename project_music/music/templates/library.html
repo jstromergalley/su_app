@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Manage My Songs{% endblock %}
+{% block content %}
+  <div style="margin: 1rem;">
+    <a href="{% url 'song_new' %}" class="btn btn-primary btn-block">Add a Song</a>
+  </div>
+
+  <div class="semi">
+    <table class="table">
+      <tr>
+        <th ><span style="float: left;">Artist</span></th>
+        <th ><span style="float: left;">Track</span></th>
+        <th ><span style="float: right;">Manage</span></th>
+      </tr>
+      {% for song in library %}
+        <tr>
+          <td><span style="float: left;">{{ song.artist }}</span></td>
+          <td><span style="float: left;">{{ song.name }}</span></td>
+          <td>
+            <span style="float: right;">
+              <a href="update/{{song.id}}" class="btn btn-warning" id = '{{song.id}}'>edit</a>
+              <a href="delete/{{song.id}}" class="btn btn-danger" id = '{{song.id}}'>delete</a>
+            </span>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}
